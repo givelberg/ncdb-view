@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>NCDB Analysis</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+
+        h2 {
+            margin: 15px;
+        }
+
+        .topbar {
+            padding: 10px 15px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .container {
+            display: flex;
+            height: calc(100vh - 60px);
+        }
+
+        /* LEFT PANEL: SCAN */
+        .left {
+            width: 28%;
+            border-right: 1px solid #ddd;
+            background: #fafafa;
+            padding: 15px;
+            overflow-y: auto;
+        }
+
+        /* RIGHT PANEL: PLOT + SELECTION */
+        .right {
+            width: 72%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .plot-area {
+            flex: 1;
+            padding: 15px;
+        }
+
+        .selection-area {
+            border-top: 1px solid #ddd;
+            padding: 15px;
+            background: #fcfcfc;
+        }
+
+        label {
+            display: inline-block;
+            width: 120px;
+            margin-top: 6px;
+        }
+
+        input, select {
+            margin: 4px 0;
+        }
+
+        #scan_log {
+            border: 1px solid black;
+            height: 200px;
+            overflow: auto;
+            padding: 8px;
+            background: #f9f9f9;
+            font-size: 12px;
+        }
+
+        #plot_img {
+            width: 100%;
+            height: auto;
+            border: 1px solid black;
+        }
+
+        #plot_specs div {
+            border: 1px solid #ddd;
+            padding: 6px;
+            margin: 4px 0;
+            font-size: 13px;
+        }
+
+        button {
+            margin-top: 6px;
+        }
+    </style>
+</head>
+
+<body>
+
+<h2>NCDB Analysis</h2>
+
+<div class="topbar">
+    <b>Database:</b> cp4.03-parallel-3dvar.db
+</div>
+
+<div class="container">
+
+    <!-- ================= LEFT: SCAN ================= -->
+    <div class="left">
+
+        <h3>Scan</h3>
+
+        <label>Scanner:</label>
+        <select id="scanner">
+            <option value="marine">marine</option>
+            <option value="obsforge">obsforge</option>
+        </select><br>
+
+        <label>Data dir:</label>
+        <input type="text" id="scan_path"
+            size="30"
+            value="/scratch4/NCEPDEV/global/John.Steffen/hpss_arch/cp4.03-parallel-3dvar"><br>
+
+        <label>Cycles:</label>
+        <input type="number" id="n_cycles"
+            value="-4"
+            style="width:80px;"><br>
+
+        <button onclick="runScan()">Scan</button>
+
+        <h3>Scan log</h3>
+        <pre id="scan_log"></pre>
+    </div>
+
+    <!-- ================= RIGHT: PLOT + SELECTION ================= -->
+    <div class="right">
+
+        <!-- PLOT AREA -->
+        <div class="plot-area">
+
+            <h3>Plot</h3>
+
+            <img id="plot_img">
+
+        </div>
+
+        <!-- SELECTION AREA -->
+        <div class="selection-area">
+
+            <h3>Selection</h3>
+
+            <label>Dataset:</label>
+            <select id="datasets"></select><br>
+
+            <label>Obs Space:</label>
+            <select id="obsspaces"></select><br>
+
+            <label>Variable:</label>
+            <select id="variables"></select><br>
+
+            <label>Attribute:</label>
+            <select id="attributes"></select>
+
+            <h3>Plot Specs</h3>
+            <div id="plot_specs"></div>
+
+            <button onclick="addPlotSpec()">Add PlotSpec</button>
+            <button onclick="renderPlot()">Render Plot</button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="app.js"></script>
+
+</body>
+</html>

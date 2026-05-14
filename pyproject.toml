@@ -1,0 +1,12 @@
+[project]
+name = "ncdb-view"
+version = "0.1.0"
+
+dependencies = [
+    "fastapi",
+    "uvicorn",
+    "ncdb @ git+https://github.com/givelberg/ncdb.git",
+]
+
+[project.scripts]
+ncdb-view = "ncdb_view.cli:main"
