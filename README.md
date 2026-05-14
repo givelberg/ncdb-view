@@ -98,4 +98,4 @@ Configuration
 | Argument | Description | Default |
 | :--- | :--- | :--- |
 | `--db` | Path to the SQLite database file | *Required* |
-| `--port` | The port to run the server on | `8000` |
+| `--port` | The port to run the server on | `8734` |
