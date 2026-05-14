@@ -10,3 +10,9 @@ dependencies = [
 
 [project.scripts]
 ncdb-view = "ncdb_view.cli:main"
+
+[tool.setuptools.package-data]
+ncdb_view = ["static/**/*"]
+
+[tool.setuptools]
+include-package-data = true
